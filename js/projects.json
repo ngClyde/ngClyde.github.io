@@ -1,0 +1,26 @@
+﻿[
+  {
+    "title": "Clymate",
+    "description": "Clymate is a weather app that display weather and UV index information for (almost) any location on this planet on a beautiful user interface.",
+    "url": "http://clymate.azurewebsites.net/",
+    "image": "https://ce3cb5a06865518e845a67710c6f902e9e82de42-www.googledrive.com/host/0B3iPDNpwGU-tUUExWWlmM28wYUE/assets/img/clymate.png"
+  },
+  {
+    "title": "Bashell",
+    "description": "Bashell is an emulated console window running in the browser with custom commands that the user can type in. Its completely running on JavaScript.",
+    "url": "http://bashell.azurewebsites.net/",
+    "image": "https://ce3cb5a06865518e845a67710c6f902e9e82de42-www.googledrive.com/host/0B3iPDNpwGU-tUUExWWlmM28wYUE/assets/img/bashell.png"
+  },
+  {
+    "title": "Nandoso: A fictional restaurant",
+    "description": "Nandoso is a web app that was made as a part of the Microsoft Student Accelerator programme and highlights the use of ASP.NET Web API framework, Facebook authentication, Disqus integration for a feedback forum, Specials of the day, Bootstrap for the UI, Application insights, Github for source control and continuous deployment and some delicious food on the menu.",
+    "url": "http://clydedsouza-nandoso.azurewebsites.net/",
+    "image": "https://ce3cb5a06865518e845a67710c6f902e9e82de42-www.googledrive.com/host/0B3iPDNpwGU-tUUExWWlmM28wYUE/assets/img/nandoso.png"
+  },
+  {
+    "title": "Kiwi Sports",
+    "description": "I developed my first Windows Store App called 'Kiwi Sports', an App that fetches the latest news, images, videos and more about the All Blacks, Black Caps and Silver Ferns. I developed this App using XAML and C# and integrated various API's. This App was developed as a part of the Microsoft Student  Accelerator programme.",
+    "url": "https://www.microsoft.com/en-us/store/apps/kiwi-sports/9nblggh5z6kg",
+    "image": "https://ce3cb5a06865518e845a67710c6f902e9e82de42-www.googledrive.com/host/0B3iPDNpwGU-tUUExWWlmM28wYUE/assets/img/kiwi-sports.png"
+  }
+]

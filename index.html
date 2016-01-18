@@ -3,86 +3,135 @@
 <head>
     <title>ngClyde</title>
 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
     <!--bootstrap css--->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body ng-app>
-    <!--menu--->
-    <nav class="navbar navbar-inverse navbar-top">
+<body ng-app="ngClyde">
+    <div class="body-inner-container" ng-controller="IndexController">
+        <!--menu--->
+        <nav class="navbar navbar-inverse navbar-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">ngClyde</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <!--about-->
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">ngClyde</a>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h1>Clyde D'Souza</h1>
+                </div>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-    
-    <!--about-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <h1>Clyde D'Souza</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <p>Hi! I am Clyde D'Souza. I live in Auckland, New Zealand but originally from Thane, Mumbai. I have completed my graduation in information technology from University of Mumbai and a postgraduate diploma in computer and information sciences from AUT University, Auckland, New Zealand and currently interning at Datacom. My aim is to gain practical knowledge in my field of study and excel in it with the help of my determination and motivation that keeps me going at my best.</p>
-                <p>Particularly, I have an inclination towards web development and possess the required technical skills. Along with that I also have good communication skills and leadership skills. I generally take up some self-thought projects where I can explore and learn the language and strive hard to bring the desired output. And in-fact, I already had this wonderful opportunity of designing and developing a website for the BMS departments' annual fest Inspira which went live in August 2012. Here, in New Zealand, I have also been a part of various hackathon's developing WordPress websites for charitable organisations. I have also developed a Windows Store App called 'Kiwi Sports'. [Read More: Projects]</p>
-                <p>Furthermore, I have been a compere at various events held in college including the annual fest Spectrum. I really enjoy that on-stage life and that has added a great deal of confidence within me. I also love talking to people and understanding their perspective towards life. Moreover, I have contributed my articles as well as designed magazine covers for Our Lady of Mercy Church, Thane parish bulletin. I also write some refreshing content on my blog Creative Center. And offlate, I have been sketching too.</p>
-            </div>
-        </div>
-    </div>
-
-    <!--projects-->
-
-
-    <!--contact-->
-    <div class="container">
-        <h2>Contact Clyde D'Souza</h2>
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <form name="contactForm" novalidate>
-                    <div class="form-group">
-                        <label for="emailId">Email id:</label>
-                        <input type="email" class="form-control" name="emailId" id="emailId" />
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div ng-repeat="d in description">
+                        <p>{{ d.p }}</p>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <input type="text" class="form-control" name="message" id="message" />
-                    </div>
-                    <div class="form-group">
-                        <input type="button" class="btn btn-success" id="send" value="Send"/>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!--footer-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12  col-xs-12">
-                <p>&copy; Clyde D'Souza</p>
-            </div>
-        </div>
-    </div>
-    <!--scripts for bootstrap-->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!--scripts for angular--->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+        <!--projects-->
+        <div class="container" ng-controller="ProjectsController">
+            <h2>Projects</h2>
+            <div ng-hide="projectsFlag">
+                <div class="alert alert-warning">We couldn't load all the projects this time due to some internal errors. We apologise for this.</div>
+            </div>
+            <div ng-show="projectsFlag">
+                <div>
+                    <input class="form-control" ng-model="projectsFilter" />
+                </div>
+                <div ng-repeat="p in projects | filter:projectsFilter">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            <img ng-src="{{p.image}}" class="img-responsive" />
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <h3>{{ p.title }}</h3>
+                            <p>{{ p.description }}</p>
+                            <a ng-href="{{p.url}}">{{ p.url }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--contact-->
+        <div class="container" ng-controller="ContactController">
+            <h2>Contact Clyde D'Souza</h2>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <form name="contactForm" novalidate  ng-submit="sendFormDetails()" >
+                        <div class="form-group">
+                            <label for="emailId">Email id:</label>
+                            <input type="email" class="form-control" name="emailId" id="emailId" ng-model="formEmailId" required/>
+                            <div class="alert alert-warning" ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">
+                                <p ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">Please provide a valid email address</p>
+                                <p ng-show="contactForm.emailId.$error.required  && contactForm.emailId.$dirty">Email address is a required field</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <input type="text" class="form-control" name="message" id="message" ng-model="formMessage" ng-minlength="3" ng-maxlength="200" required />
+                            <div class="alert alert-warning" ng-show="contactForm.message.$invalid">
+                                <p class="text-error" ng-show="contactForm.message.$invalid">Please enter a message between 3 and 200 characters</p>
+                                <p class="text-error" ng-show="contactForm.message.$error.minlength">Minimum 3 characters are required in your message</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" id="send" value="Send" />
+                        </div>
+                        <div ng-show="contactFormSendSuccess">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Hurray!</strong> We have received your details.
+                            </div>
+                        </div>
+                        <div ng-show="contactFormSendError">
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <strong>Arrggh!</strong> We spotted you have made mistakes.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--footer-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12  col-xs-12">
+                    <p>&copy; Clyde D'Souza</p>
+                </div>
+            </div>
+        </div>
+        <!--scripts for bootstrap-->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <!--scripts for angular--->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+
+        <!--your application specific angular scripts--->
+        <script src="js/app.js"></script>
+    </div>
 </body>
 </html>
