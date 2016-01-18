@@ -40,7 +40,7 @@ angular.module('ngClyde')
         $scope.projects = {};
         $scope.projectsFilter = "";
         $scope.projectsFlag = true;
-        $http.get("http://localhost:49385/js/projects.json")
+        $http.get("https://raw.githubusercontent.com/ngClyde/ngClyde.github.io/master/js/projects.json")
             .then(function successFunction(jsonData){
                 $scope.projects = jsonData.data;
                 $scope.projectsFlag = true;
