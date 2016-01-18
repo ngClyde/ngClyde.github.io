@@ -1,0 +1,41 @@
+﻿<!--contact-->
+<div class="container" ng-controller="ContactController">
+    <h2>Contact Clyde D'Souza</h2>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <form name="contactForm" novalidate ng-submit="contactForm.$valid && sendFormDetails()">
+                <div class="form-group">
+                    <label for="emailId">Email id:</label>
+                    <input type="email" class="form-control" name="emailId" id="emailId" ng-model="formEmailId" required />
+                    <div class="alert alert-warning" ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">
+                        <p ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">Please provide a valid email address</p>
+                        <p ng-show="contactForm.emailId.$error.required  && contactForm.emailId.$dirty">Email address is a required field</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <input type="text" class="form-control" name="message" id="message" ng-model="formMessage" ng-minlength="3" ng-maxlength="200" required />
+                    <div class="alert alert-warning" ng-show="contactForm.message.$invalid">
+                        <p class="text-error" ng-show="contactForm.message.$invalid">Please enter a message between 3 and 200 characters</p>
+                        <p class="text-error" ng-show="contactForm.message.$error.minlength">Minimum 3 characters are required in your message</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" id="send" value="Send" />
+                </div>
+                <div ng-show="contactFormSendSuccess">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Hurray!</strong> We have received your details.
+                    </div>
+                </div>
+                <div ng-show="contactFormSendError">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Arrggh!</strong> We spotted you have made mistakes.
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

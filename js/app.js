@@ -1,7 +1,18 @@
-﻿angular.module('ngClyde', []);
+﻿angular.module('ngClyde', ['ngRoute']);
+
+angular.module('ngClyde')
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+        .when("/", { templateUrl: "/views/about.html", controller: "IndexController" })
+        .when("/projects", { templateUrl: "/views/projects.html", controller: "ProjectsController" })
+        .when("/github", { templateUrl: "/views/github.html", controller: "IndexController" })
+        .when("/contact", { templateUrl: "/views/contact.html", controller: "ContactController" })
+        .otherwise("/404", { templateUrl: "/views/about.html", controller: "IndexController" });
+    }]);
 
 angular.module('ngClyde')
     .controller('IndexController', ['$scope', function ($scope) {
+        $scope.footerDate = new Date();
         $scope.aboutImage = "";
         $scope.description = {};
         $scope.description = [{ p: "Hi! I am Clyde D'Souza. I live in Auckland, New Zealand but originally from Thane, Mumbai. I have completed my graduation in information technology from University of Mumbai and a postgraduate diploma in computer and information sciences from AUT University, Auckland, New Zealand and currently interning at Datacom. My aim is to gain practical knowledge in my field of study and excel in it with the help of my determination and motivation that keeps me going at my best." },
@@ -20,6 +31,7 @@ angular.module('ngClyde')
             $scope.contactFormSendError = false;
             $scope.formEmailId = "";
             $scope.formMessage = "";
+            $scope.formEmailId = "";
         };
     }]); 2
 
