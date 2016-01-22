@@ -1,12 +1,21 @@
-﻿<!--contact-->
+﻿<!----contact---->
 <div class="container" ng-controller="ContactController">
     <h2>Contact Clyde D'Souza</h2>
     <div class="row">
         <div class="col-md-12 col-xs-12">
+            <!----
+            To take complete advantage of Angular Forms we must name the <form> element and add the attribute novalidate which prevents default validation.
+            The directive ng-submit handles the event in case the submit button is clicked. We have written a condition in the ng-submit directive which only allows us to submit the form if the form is valid.
+            Using the form name, we can access various properties of the FormController (we haven't written a FormController, its Angular's controller for forms) and one of them is $valid which is true if the form is valid and false otherwise.
+            ---->
             <form name="contactForm" novalidate ng-submit="contactForm.$valid && sendFormDetails()">
                 <div class="form-group">
                     <label for="emailId">Email id:</label>
                     <input type="email" class="form-control" name="emailId" id="emailId" ng-model="formEmailId" required />
+                    <!----
+                    Similar to accessing the properties of the FormController using the form name as an instance of the form, we can also access those properties for a specific input control as well. The code below contactForm.emailId.$dirty returns true if that particular
+                    input control is touched. We use these properties along with directives such as ng-show and ng-hide to give the user an instant feedback about the validation of the form.
+                    ---->
                     <div class="alert alert-warning" ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">
                         <p ng-show="contactForm.emailId.$invalid && contactForm.emailId.$dirty">Please provide a valid email address</p>
                         <p ng-show="contactForm.emailId.$error.required  && contactForm.emailId.$dirty">Email address is a required field</p>
@@ -14,6 +23,9 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Message:</label>
+                    <!----
+                    The directives ng-minlength and ng-maxlength provide the validation required for an input control and is self explanatory
+                    ---->
                     <input type="text" class="form-control" name="message" id="message" ng-model="formMessage" ng-minlength="3" ng-maxlength="200" required />
                     <div class="alert alert-warning" ng-show="contactForm.message.$invalid">
                         <p class="text-error" ng-show="contactForm.message.$invalid">Please enter a message between 3 and 200 characters</p>

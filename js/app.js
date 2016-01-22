@@ -1,15 +1,41 @@
-﻿angular.module('ngClyde', ['ngRoute']);
+﻿/* Clyde D'Souza http://goo.gl/8yXVaA | Angular resources at https://github.com/ngClyde */
 
+/* app.js */
+
+/* this is the script file where we have written the our Angular scripts which tell Angular to bootstrap itself to our app as well as create various
+ * Angular components.
+ * it is not necessary to name this file app.js and it is not necessary to include all the code in one .js file, just ensure you include these .js files in your HTML page using <script> like we have done in index.html
+ * as your app grows it is advisable to keep controller, services, custom directives and modules in separate .js file each so that it will end up being manageable
+ */
+
+/*
+ * angular.module('app', []) // no dependencies
+ * angular.module('app', ['ngRoute']) // dependency on ngRoute module
+ * This creates a new module and may have dependencies. The array of Strings refers to other module names and while creating a module we have two arguments
+ * unlike using an existing module where only one argument is specified.
+ */
+angular.module('ngClyde', ['ngRoute']);
+
+
+/*
+ * configure routes for displaying partial templates in our main layout template (index.html)
+ * although dynamic content is loaded within the main page, notice that the url changes according to the routes you have specified
+ * this is useful for deep linking where each 'page' can have its own unique address and can be bookmarked / shared
+ */
 angular.module('ngClyde')
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
         .when("/", { templateUrl: "/views/about.html", controller: "IndexController" })
         .when("/projects", { templateUrl: "/views/projects.html", controller: "ProjectsController" })
-        .when("/github", { templateUrl: "/views/github.html", controller: "IndexController" })
         .when("/contact", { templateUrl: "/views/contact.html", controller: "ContactController" })
         .otherwise("/404", { templateUrl: "/views/about.html", controller: "IndexController" });
     }]);
 
+
+/*
+ * create a controller using module.controller
+ * here we are using inline array for dependency injection which is the safest with or without minification
+ */
 angular.module('ngClyde')
     .controller('IndexController', ['$scope', function ($scope) {
         $scope.footerDate = new Date();
@@ -33,8 +59,16 @@ angular.module('ngClyde')
             $scope.formMessage = "";
             $scope.formEmailId = "";
         };
-    }]); 2
+    }]);
 
+
+/*
+ * this controller uses the $http service to make AJAX requests
+ * the GET request returns a promise object and we can call .then() method on that object which has a success function as one argument and a failure function as another argument
+ * you don't have to name the methods as success / failure
+ * we also can use the .finally() on the promise object which executes in case of success and failure
+ * consider this as the finally block of a try-catch code
+ */
 angular.module('ngClyde')
     .controller('ProjectsController', ['$scope','$http', function ($scope,$http) {
         $scope.projects = {};
@@ -52,3 +86,23 @@ angular.module('ngClyde')
                 console.log("Finally block is executed in both scenarios - success and failure");
             });
     }]);
+
+
+/*
+ * we can create our own directive and use that in our layout template using the module.directive() method
+ * we use a normalized name for our directive which is case sensitive and doesn't contain hyphens
+ * therefore, webapp-footer becomes webappFooter when writing your own directive
+ *
+ * every directive returns a value
+ * retrict : 'E' means that this directive is made to be used as an element i.e. tag name in HTML like <b> <p> <h1>
+ * we could write restrict : 'A' which would mean that our directive is to be used like an attribute
+ * templateUrl: 'path/to/html/code' is where we specify which piece of HTML code to bind to the custom directive
+ * in this example we create our custom directive to display a static footer in the web app which may not be the case in production web apps
+ */
+angular.module('ngClyde')
+    .directive('webappFooter', function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../views/footer.html'
+        };
+    });

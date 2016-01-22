@@ -1,14 +1,24 @@
-﻿<!--projects-->
+﻿<!----projects---->
 <div class="container" ng-controller="ProjectsController">
     <h2>Projects</h2>
+    <!---
+        The ng-hide directive hides the content contained within it when the value is truthy (here: when projectsFlag is true). We hide this section when we are able to fetch the projects like from the XHR $http request
+    ---->
     <div ng-hide="projectsFlag">
         <div class="alert alert-warning">We couldn't load all the projects this time due to some internal errors. We apologise for this.</div>
     </div>
+    <!----
+        Similar to ng-hide directive, ng-show displays the content contained within it when the value is truthy (here: when projectsFlag is true). We use this to display the list of projects as long as we are able to fetch them successfully.
+    ---->
     <div ng-show="projectsFlag">
         <div>
-            <input class="form-control" ng-model="projectsFilter" placeholder="Search projects"/>
-            <br />
-        </div>
+            <input class="form-control" ng-model="projectsFilter" placeholder="Search projects"/><br />
+        </div>        
+        <!----
+            The code snippet below displays the list of projects. Consider ng-repeat to be like a for loop- we write the code once and it loops thru the code n times. We have written a template and depending on the number of projects, ng-repeat will loop thru this template those number of times.
+            projects is a property in the scope of the ProjectsController and we alias it with the name p. We have used the filter which is named filter (and it isn't a custom filter). This filter refines the output the expression to the left of the pipe '|' operator and only includes those results
+            that match the value in the projectsFilter argument. Here projectsFilter is the data that you type in the input control above and is kept in-sync using the ng-model directive.
+        ---->
         <div ng-repeat="p in projects | filter:projectsFilter">
             <div class="row">
                 <div class="col-md-4 col-xs-12">
