@@ -28,7 +28,7 @@ angular.module('ngClyde')
         .when("/", { templateUrl: "/views/about.html", controller: "IndexController" })
         .when("/projects", { templateUrl: "/views/projects.html", controller: "ProjectsController" })
         .when("/contact", { templateUrl: "/views/contact.html", controller: "ContactController" })
-        .otherwise("/404", { templateUrl: "/views/about.html", controller: "IndexController" });
+        .otherwise({ templateUrl: "/views/about.html", controller: "IndexController" });
     }]);
 
 
